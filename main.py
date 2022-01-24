@@ -17,10 +17,13 @@ if __name__ == '__main__':
 
     while True:
         for item in ranks:
-            print(item[0], item[1])
-        value = input("Search for words containing... \n")
+            print(item[0])
+        value = input('Search for words "{included-alphabets} {excluded-alphabets}" \n').split()
+        
         target_words = words
-        for x in value:
+        for x in value[0]:
             target_words = [word for word in target_words if x in word]
+        for x in value[1]:
+            target_words = [word for word in target_words if x not in word]
         print('These are the candidates: ', target_words)
     
