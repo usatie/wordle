@@ -14,6 +14,11 @@ if __name__ == '__main__':
         freq[x] = float(freq[x]) / float(freq['q'])
 
     ranks = sorted(freq.items(), reverse=True, key=lambda x:x[1])
+    def deleteCandidate(c):
+        for i, e in enumerate(ranks):
+            if e[0] == c:
+                del ranks[i]
+        
 
     while True:
         for item in ranks:
@@ -23,7 +28,9 @@ if __name__ == '__main__':
         target_words = words
         for x in value[0]:
             target_words = [word for word in target_words if x in word]
-        for x in value[1]:
-            target_words = [word for word in target_words if x not in word]
+        if len(value) == 2:
+            for x in value[1]:
+                deleteCandidate(x)
+                target_words = [word for word in target_words if x not in word]
         print('These are the candidates: ', target_words)
     
